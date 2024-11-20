@@ -140,6 +140,7 @@ export async function getStopInfo(stopLocation: string): Promise<StopInfo> {
       [0, 1, 2, 3]
         .forEach((i) => {
           const {
+            [`Direction` as keyof TfgmMetrolink]: direction,
             [`Dest${i}` as keyof TfgmMetrolink]: destination,
             [`Carriages${i}` as keyof TfgmMetrolink]: type,
             [`Status${i}` as keyof TfgmMetrolink]: status,
@@ -148,6 +149,7 @@ export async function getStopInfo(stopLocation: string): Promise<StopInfo> {
 
           if (destination) {
             departures.push({
+              direction,
               destination,
               type,
               status,
